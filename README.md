@@ -4,10 +4,19 @@ currently just campbell's proof of concept script
 add tweets to input.txt and run proof.py
 
 
+### Running NLTK Proof of concept
 ```
-virtualenv -p python3 env
-source env/bin/activate
-pip3 install --upgrade pip
-pip3 install -r requirements.txt
-python3 proof.py
+make nltk
+source nltk-env/bin/activate
+python proof.py
+```
+
+### Running Indico Proof of concept
+We have a limited number of calls for the month on the API key so unless
+we want to start paying just don't run the proof of concept a billion times!
+
+```
+make indico
+source indico/bin/activate
+python indico-proof.py
 ```
