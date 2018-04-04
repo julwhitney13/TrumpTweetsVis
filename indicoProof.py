@@ -8,15 +8,17 @@ def get_examples(filename):
     with open(filename) as inputText:
         return inputText.readlines()
 
-def indicoStrategyFactory(sentences, indicoMethod):
-    configure()
-    sentimentMethod = getattr(indicoio, indicoMethod)
-    sentiments = sentimentMethod(sentences)
-    out = []
-    for i in range(len(sentences)):
-        out.append({'sentence': sentences[i],
-                    indicoMethod: sentiments[i]})
-    return out
+def indicoStrategyFactory(indicoMethod):
+    def strategy(sentences):
+        configure()
+        sentimentMethod = getattr(indicoio, indicoMethod)
+        sentiments = sentimentMethod(sentences)
+        out = []
+        for i in range(len(sentences)):
+            out.append({'sentence': sentences[i],
+                        indicoMethod: sentiments[i]})
+        return out
+    return strategy
 
 def main():
     configure()

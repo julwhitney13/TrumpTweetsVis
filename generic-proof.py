@@ -3,7 +3,7 @@ from tweet import Tweet
 import json
 
 def analyzeTweets(tweetFilename, analysis_strategy):
-    examples = Tweet.fromTweetFile(tweetFilename)
+    examples = Tweet.fromTweetFile(tweetFilename)[:100]
 
     sentences = []
     for example in examples:
@@ -27,10 +27,12 @@ def doNLTK():
     data = analyzeTweets('trump-tweets.json', nltkStrategy)
     outputJSON('nltk-out.json', data)
 
-def doIndico():
+def doIndico(method):
     from indicoProof import indicoStrategyFactory
-    data = analyzeTweets('trump-tweets.json', indicoStrategyFactory('sentiment_hq'))
-    outputJSON('indico-out.json', data)
+    data = analyzeTweets('trump-tweets.json', indicoStrategyFactory(method))
+    outputJSON('indico-{}-out.json'.format(method), data)
 
 if __name__ == "__main__":
-    doNLTK()
+    #doNLTK()
+    for m in ['political', 'twitter_engagement', 'sentiment_hq', 'organizations', 'personality', 'places']:
+        doIndico(m)
