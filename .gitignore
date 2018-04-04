@@ -104,3 +104,6 @@ cnn_venv/
 
 # mypy
 .mypy_cache/
+
+# Ignore input and output files
+*.json
