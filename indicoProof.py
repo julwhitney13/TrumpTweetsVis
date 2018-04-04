@@ -9,10 +9,19 @@ def get_examples(filename):
         return inputText.readlines()
 
 def indicoStrategyFactory(indicoMethod):
-    def strategy(sentences):
+    def strategy(sentences, batchSize=100):
         configure()
         sentimentMethod = getattr(indicoio, indicoMethod)
-        sentiments = sentimentMethod(sentences)
+        sentiments = []
+        i = 0
+        while i < len(sentences):
+            start = i
+            end = i + batchSize if i + batchSize < len(sentences) else len(sentences)
+
+            print("{}: Getting for {} - {}".format(indicoMethod, start, end))
+            sentiments.extend(sentimentMethod(sentences[start:end]))
+            i = end
+
         out = []
         for i in range(len(sentences)):
             out.append({'sentence': sentences[i],

@@ -3,7 +3,7 @@ from tweet import Tweet
 import json
 
 def analyzeTweets(tweetFilename, analysis_strategy):
-    examples = Tweet.fromTweetFile(tweetFilename)[:100]
+    examples = Tweet.fromTweetFile(tweetFilename)
 
     sentences = []
     for example in examples:
