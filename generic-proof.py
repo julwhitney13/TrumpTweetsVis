@@ -17,11 +17,13 @@ def analyzeTweets(tweetFilename, analysis_strategy):
     return analysis_strategy(sentences)
 
 def outputJSON(outfile, data, fileMode='w'):
+    print('Writing data to ' + outfile)
     with open(outfile, fileMode) as outfile:
         json.dump(data, outfile, indent=4)
 
 def doNLTK():
     from nltkProof import nltkStrategy
+    print('Running NLTK sentiment')
     data = analyzeTweets('trump-tweets.json', nltkStrategy)
     outputJSON('nltk-out.json', data)
 
