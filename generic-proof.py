@@ -34,5 +34,5 @@ def doIndico(method):
 
 if __name__ == "__main__":
     #doNLTK()
-    for m in ['political', 'twitter_engagement', 'organizations', 'personality', 'places']:
+    for m in ['twitter_engagement']:
         doIndico(m)

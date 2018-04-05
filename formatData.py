@@ -4,13 +4,16 @@ import pandas
 import json
 from tweet import Tweet
 
-def loadTweets(filename):
-    raw = pandas.read_csv(filename)
+def importCSV(csvFilename):
+    raw = pandas.read_csv(csvFilename)
     fields = list(raw)
     data = []
     for x in raw.values.tolist():
         data.append({k: v for k, v in zip(fields, x)})
+    return data
 
+def loadTweets(filename):
+    data = importCSV(filename)
     return [Tweet(d) for d in data]
 
 def loadData(filename):
@@ -32,10 +35,11 @@ def collectAll(tweetFile, dataFiles):
 
 def dumpAll(tweets, filename):
     tweetData = []
-    fields = tweets[0].data.keys()
+    fields = filter(lambda x: x != 'sentence', tweets[0].data.keys())
     fields.extend(['date', 'time'])
     for tweet in tweets:
         tData = tweet.data
+        del tData['sentence']
         tData['date'] = tweet.date
         tData['time'] = tweet.time
         tweetData.append(tData)
@@ -44,7 +48,11 @@ def dumpAll(tweets, filename):
         writer = csv.DictWriter(outfile, fieldnames=fields)
         writer.writeheader()
         for dat in tweetData:
-            writer.writerow(dat)
+            try:
+                writer.writerow(dat)
+            except Exception as e:
+                print(dat)
+                raise e
 
 
 def main():
