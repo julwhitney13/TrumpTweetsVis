@@ -10,24 +10,10 @@ The proof of concepts are run through the `generic-proof.py` script which expect
 file, you can alter it to run indico by swapping `doNLTK` with `doIndico`. By default,
 the output of the proof of concept run is put into an `outfile.json` file.
 
-Source the corresponding environment (see below) and run.
+Run `make` to setup the environment and source env/bin/activate to source the environment.
+
 `python generic-proof.py` to generate the data.
 
-### Running NLTK Proof of concept
-```
-make nltk
-source nltk-env/bin/activate
-```
-
-### Running Indico Proof of concept
-We have a limited number of calls for the month on the API key so unless
-we want to start paying just don't run the proof of concept a billion times!
-__Note:__ doIndico is not enabled by default
-
-```
-make indico
-source indico/bin/activate
-```
 
 Indico has many more methods for sentiment analysis than the NLTK Vader package.
 If you look at how `doIndico` works, there is a strategy factory for getting the

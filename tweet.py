@@ -14,7 +14,7 @@ class Tweet():
     """
 
     TIME_REGEX = r'(\d\d:\d\d:\d\d)'
-    DATE_REGEX = r'(\w+ \d\d )\d\d:\d\d:\d\d \+\d\d\d\d (\d\d\d\d)'
+    DATE_REGEX = r'(\d\d-\d\d-\d\d\d\d)'
 
     @staticmethod
     def fromTweetFile(filename):
@@ -27,15 +27,11 @@ class Tweet():
         return tweetObjs
 
     def __init__(self, src_dict):
-        for key in src_dict.keys():
-            try:
-                src_dict[key] = src_dict[key].encode('utf8')
-            except AttributeError:
-                continue
         src_dict["sentiment"] = None
-        src_dict["date"] = self.parseDateFromCreatedAt(src_dict["created_at"])
-        src_dict["time"] = self.parseTimeFromCreatedAt(src_dict["created_at"])
-        
+        self.date = self.parseDateFromCreatedAt(src_dict["created_at"])
+        self.time = self.parseTimeFromCreatedAt(src_dict["created_at"])
+        self.data = {}
+
         self.__dict__.update(src_dict)
 
     def __str__(self):
@@ -47,10 +43,10 @@ class Tweet():
                                      date=self.date,
                                      time=self.time,
                                      sentiment=self.sentiment)
-    
+
     def parseDateFromCreatedAt(self, created_at):
         date = re.search(Tweet.DATE_REGEX, created_at)
-        return date.group(1) + date.group(2)
+        return date.group(1)
 
     def parseTimeFromCreatedAt(self, created_at):
         time = re.search(Tweet.TIME_REGEX, created_at)
