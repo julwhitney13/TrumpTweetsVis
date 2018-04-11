@@ -36,12 +36,14 @@ def collectAll(tweetFile, dataFiles):
 def dumpAll(tweets, filename):
     tweetData = []
     fields = filter(lambda x: x != 'sentence', tweets[0].data.keys())
-    fields.extend(['date', 'time'])
+    fields.extend(['date', 'time', 'source', 'dateTime'])
     for tweet in tweets:
         tData = tweet.data
-        del tData['sentence']
+        #del tData['sentence']
         tData['date'] = tweet.date
         tData['time'] = tweet.time
+        tData['source'] = tweet.source
+        tData['dateTime'] = tweet.date + ' ' + tweet.time
         tweetData.append(tData)
 
     with open(filename, 'w') as outfile:
