@@ -1,0 +1,10 @@
+﻿LINK TO WEBSITE WITH VISUALIZATIONS
+https://sites.google.com/view/trumptweets/home
+
+
+LINK TO CODE TO BE VIEWED ON GITHUB
+https://github.com/kimception/TrumpTweetsVis
+
+
+LINK TO PRESENTATION SLIDES ON GOOGLE SLIDES
+https://docs.google.com/presentation/d/1rbMJ5c3YjKMfud5QKYwji_j0EDVcMQyAoZHWGienbNw/edit?usp=sharing

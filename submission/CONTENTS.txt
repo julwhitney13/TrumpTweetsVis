@@ -1,0 +1,13 @@
+This zip file contains:
+
+- PDF Version of Final Presentation
+- PPT Version of Final Presentation
+
+- PDF File of Final Paper
+- Important links of site, github, and slides
+- Zip file of Source Code used (same as what's on github link)
+- Contributors file listing the contributors of this project
+
+for the Trump Tweets Data Visualization Project, Spring 2018
+Northeastern University, EECE 5642
+
